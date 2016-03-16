@@ -1,0 +1,44 @@
+const int lightSensor2 =A2;
+const int lightSensor3 = A3;
+float dataLS1;
+float dataLS2;
+float dataLS3;
+float temp;
+float intensityLS1;
+float intensityLS2;
+float intensityLS3;
+int sensorValue;
+float average;
+void setup() {
+  
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  
+  dataLS2 = analogRead(lightSensor2);
+  dataLS3 = analogRead(lightSensor3);
+  
+  intensityLS2 = dataLS2/4;
+  intensityLS3 = dataLS3/4;
+  
+  if(intensityLS2 >99.99)
+  {
+    intensityLS2=99.99;
+  }
+  if (intensityLS3 >99.99)
+  {
+    intensityLS3 = 99.99;
+  }
+  
+  average = (intensityLS2+intensityLS3)/2.0;
+  Serial.print("Reading 1: ");
+  Serial.print(intensityLS2);
+  Serial.print(", Reading 2: ");
+  Serial.print(intensityLS3);
+  Serial.print(", Average: ");
+  Serial.println(average);
+  
+  delay(1000);
+}
